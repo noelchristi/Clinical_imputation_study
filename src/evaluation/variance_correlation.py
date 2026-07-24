@@ -35,6 +35,11 @@ Both metrics are complementary and should be reported together:
 - Cell-level R_V: assesses quality of imputed values themselves
 - Global R_V: assesses overall distributional impact
 
+API Compatibility:
+  - ``mean_R_V``: alias for ``mean_R_V_cell`` (backward compatibility)
+  - ``mean_R_V_cell``: mean cell-level variance ratio
+  - ``mean_R_V_global``: mean global variance ratio (new in v4.1)
+
 Correlation Preservation (Δr)
 ------------------------------
 The Pearson correlation matrix computed on the imputed dataset minus
@@ -88,6 +93,7 @@ def variance_ratio(
               - var_idx: column index
               - R_V_cell: cell-level variance ratio (on imputed positions)
               - R_V_global: global variance ratio (on full column)
+          ``"mean_R_V"``: alias for mean_R_V_cell (backward compatibility).
           ``"mean_R_V_cell"``: mean cell-level R_V across eligible variables.
           ``"mean_R_V_global"``: mean global R_V across all variables.
     """
@@ -130,6 +136,7 @@ def variance_ratio(
     
     return {
         "per_variable": per_var,
+        "mean_R_V": mean_r_v_cell,           # backward compatibility
         "mean_R_V_cell": mean_r_v_cell,
         "mean_R_V_global": mean_r_v_global,
     }

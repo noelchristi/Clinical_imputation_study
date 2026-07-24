@@ -102,6 +102,86 @@ def evaluate_continuous_variable(
     }
 
 
+def rmse_on_imputed_cells(
+    X_true: np.ndarray,
+    X_imp: np.ndarray,
+    mask: np.ndarray,
+    continuous_idx: List[int],
+) -> dict:
+    """Compute mean RMSE across continuous variables on imputed cells only.
+
+    Args:
+        X_true:         Complete reference matrix ``(N, P)``.
+        X_imp:          Imputed matrix ``(N, P)``.
+        mask:           Boolean mask ``(N, P)`` — True where data were missing.
+        continuous_idx: Indices of continuous variables.
+
+    Returns:
+        Dictionary with 'mean_rmse' (float) and 'per_variable' (list of dicts).
+    """
+    rmse_values = []
+    per_var = []
+    
+    for j in continuous_idx:
+        col_mask = mask[:, j]
+        if col_mask.sum() < 2:
+            continue
+        
+        true_vals = X_true[col_mask, j]
+        imp_vals = X_imp[col_mask, j]
+        rmse = float(np.sqrt(mean_squared_error(true_vals, imp_vals)))
+        
+        rmse_values.append(rmse)
+        per_var.append({"var_idx": j, "rmse": rmse})
+    
+    mean_rmse = float(np.mean(rmse_values)) if rmse_values else np.nan
+    
+    return {
+        "mean_rmse": mean_rmse,
+        "per_variable": per_var,
+    }
+
+
+def mae_on_imputed_cells(
+    X_true: np.ndarray,
+    X_imp: np.ndarray,
+    mask: np.ndarray,
+    continuous_idx: List[int],
+) -> dict:
+    """Compute mean MAE across continuous variables on imputed cells only.
+
+    Args:
+        X_true:         Complete reference matrix ``(N, P)``.
+        X_imp:          Imputed matrix ``(N, P)``.
+        mask:           Boolean mask ``(N, P)`` — True where data were missing.
+        continuous_idx: Indices of continuous variables.
+
+    Returns:
+        Dictionary with 'mean_mae' (float) and 'per_variable' (list of dicts).
+    """
+    mae_values = []
+    per_var = []
+    
+    for j in continuous_idx:
+        col_mask = mask[:, j]
+        if col_mask.sum() < 2:
+            continue
+        
+        true_vals = X_true[col_mask, j]
+        imp_vals = X_imp[col_mask, j]
+        mae = float(mean_absolute_error(true_vals, imp_vals))
+        
+        mae_values.append(mae)
+        per_var.append({"var_idx": j, "mae": mae})
+    
+    mean_mae = float(np.mean(mae_values)) if mae_values else np.nan
+    
+    return {
+        "mean_mae": mean_mae,
+        "per_variable": per_var,
+    }
+
+
 def evaluate_all_continuous(
     X_true: np.ndarray,
     X_imp: np.ndarray,

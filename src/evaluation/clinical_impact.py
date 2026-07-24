@@ -153,48 +153,9 @@ def evaluate_clinical_model(
     }
 
 
-# Backward compatibility: keep existing functions if any
-# (Placeholder for existing code)
-
-# -*- coding: utf-8 -*-
-"""
-clinical_impact.py — Clinical model preservation metrics
-=========================================================
-Evaluates how well each imputation method preserves the results of
-downstream clinical analysis: a binary logistic regression model
-predicting hypertension (or the designated target variable).
-
-Metrics:
-  - AUC-ROC (discrimination, DeLong 1988)
-  - Brier score (calibration accuracy, Brier 1950)
-  - Hosmer-Lemeshow goodness-of-fit test (Hosmer & Lemeshow 1980)
-  - Calibration curve (reliability diagram, 10 bins)
-  - Log(OR) bias: difference in logistic regression coefficients vs reference
-  - β bias: difference in OLS regression coefficients vs reference
-
-References:
-    Brier, G.W. (1950). Verification of forecasts expressed in terms of
-    probability.  Monthly Weather Review 78(1):1–3.
-
-    Hosmer, D.W. & Lemeshow, S. (1980). A goodness-of-fit test for the
-    multiple logistic regression model.
-    Communications in Statistics A10:1043–1069.
-
-    DeLong, E.R., DeLong, D.M. & Clarke-Pearson, D.L. (1988).
-    Comparing the areas under two or more correlated receiver operating
-    characteristic curves.  Biometrics 44(3):837–845.
-"""
-
-from __future__ import annotations
-
-from typing import List, Optional
-
-import numpy as np
-import pandas as pd
-from sklearn.linear_model import LinearRegression, LogisticRegression
-from sklearn.metrics import roc_auc_score, brier_score_loss
-from sklearn.model_selection import cross_val_predict
-from sklearn.preprocessing import LabelEncoder
+# ══════════════════════════════════════════════════════════════════════════
+# Existing V4 function (backward compatibility)
+# ══════════════════════════════════════════════════════════════════════════
 
 
 def clinical_model_impact(
