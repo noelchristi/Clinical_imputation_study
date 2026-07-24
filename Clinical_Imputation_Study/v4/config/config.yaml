@@ -1,0 +1,45 @@
+# Clinical Imputation Study v4 — Configuration
+simulation:
+  monte_carlo_repetitions: 5
+  missing_rates: [0.10, 0.20, 0.40]
+  mechanisms: ["MCAR", "MAR", "MNAR"]
+  random_seed: 42
+
+imputation:
+  knn:
+    k: 5
+  mice:
+    max_iter: 10
+    sample_posterior: true
+  missforest:
+    n_estimators: 100
+    max_depth: 10
+    max_iter: 5
+
+evaluation:
+  continuous_metrics: ["RMSE", "NRMSE", "MAE", "Bias", "KS_pvalue", "Wilcoxon_pvalue"]
+  categorical_metrics: ["F1_weighted", "Accuracy", "Cohens_Kappa", "MCC", "Chi2_pvalue"]
+  variance_ratio: true
+  correlation_preservation: true
+  clinical_impact: true
+  sensitivity_analysis: true
+
+statistics:
+  friedman_test: true
+  nemenyi_posthoc: true
+  holm_correction: true
+  rubin_rules: true
+  effect_sizes: true
+
+visualization:
+  dpi: 300
+  format: "png"
+  figures_main: ["rmse_curves", "rmse_ratio", "radar_plot", "variance_ratio", "boxplot", "decision_tree"]
+  figures_supplementary: ["cd_diagram", "roc_curves", "calibration", "forest_plot", "correlation_heatmap", "bland_altman", "violin", "qq_plot", "convergence"]
+
+paths:
+  data_raw: "data/raw/dataset.csv"
+  outputs: "v4/outputs"
+  figures: "v4/figures"
+  logs: "v4/logs"
+  article: "v4/article"
