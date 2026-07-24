@@ -1,5 +1,0 @@
-Methode;Cohens_d_RMSE;Cliffs_Delta_KS;eta_sq_friedman;OR_accuracy
-Mediane/Mode;-0.0012;0.7922;0.95;1.0
-KNN (k=5);0.0167;0.2857;0.95;1.1375
-MICE (BayesianRidge);-0.0729;0.2448;0.95;0.705
-MissForest;0.3982;0.1795;0.95;3.0945

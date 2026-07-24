@@ -1,5 +1,0 @@
-Methode;AUC;Brier_Score;Hosmer_Lemeshow_p
-Mediane/Mode;0.8656;0.1447;0.0
-KNN (k=5);0.8703;0.1444;0.0
-MICE (BayesianRidge);0.7876;0.1842;0.0
-MissForest;0.9409;0.0867;0.0

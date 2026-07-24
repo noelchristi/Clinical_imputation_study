@@ -36,7 +36,8 @@ figures_final/
 *.swp
 *.swo
 
-# Environment
-.env
-.venv/
-venv/
+# Old/archived files
+old/
+
+# Temp Office files
+~$*
