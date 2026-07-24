@@ -1,0 +1,15 @@
+{
+  "outlier_ratio": {
+    "Mediane/Mode": 6.17,
+    "KNN (k=5)": 5.91,
+    "MICE (BayesianRidge)": 1.96,
+    "MissForest": 4.89
+  },
+  "small_n_rmse": {
+    "Mediane/Mode": 34.92,
+    "KNN (k=5)": 51.74,
+    "MICE (BayesianRidge)": 61.48,
+    "MissForest": 41.13
+  },
+  "high_vif_vars": []
+}

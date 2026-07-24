@@ -1,0 +1,11 @@
+Methode;Parametre;Valeur;RMSE;Temps
+KNN (k=3);k;3;58.83;0.1
+KNN (k=5);k;5;57.34;0.1
+KNN (k=10);k;10;57.49;0.1
+KNN (k=15);k;15;58.88;0.1
+MissForest(n=50,d=5);n_est/max_d;50/5;32.61;40.8
+MissForest(n=50,d=10);n_est/max_d;50/10;32.86;41.7
+MissForest(n=50,d=∞);n_est/max_d;50/None;33.27;60.5
+MissForest(n=100,d=5);n_est/max_d;100/5;32.05;143.1
+MissForest(n=100,d=10);n_est/max_d;100/10;32.75;110.2
+MissForest(n=100,d=∞);n_est/max_d;100/None;32.81;126.0

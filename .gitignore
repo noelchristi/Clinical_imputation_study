@@ -18,8 +18,10 @@ Clinical_Imputation_Study/v1/figures/
 # Raw data (potentially sensitive)
 Clinical_Imputation_Study/data/raw/
 
-# Old files (historical artifacts)
-old/
+# Historical versions (not in v4 scope)
+Clinical_Imputation_Study/v1/
+Clinical_Imputation_Study/v2/
+Clinical_Imputation_Study/v3/
 
 # Temporary figures directory
 figures_final/
