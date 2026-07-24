@@ -4,16 +4,10 @@ __pycache__/
 *.pyo
 *.egg-info/
 
-# Output directories (large CSVs, not tracked)
+# Output directories (large files, not tracked)
 Clinical_Imputation_Study/v4/outputs/
 Clinical_Imputation_Study/v4/logs/
 Clinical_Imputation_Study/v4/figures/
-Clinical_Imputation_Study/v2/outputs/
-Clinical_Imputation_Study/v2/figures/
-Clinical_Imputation_Study/v3/outputs/
-Clinical_Imputation_Study/v3/figures/
-Clinical_Imputation_Study/v1/outputs/
-Clinical_Imputation_Study/v1/figures/
 
 # Raw data (potentially sensitive)
 Clinical_Imputation_Study/data/raw/
