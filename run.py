@@ -63,7 +63,7 @@ from reporting import (
 )
 
 # ── Defaults ──────────────────────────────────────────────────────────────────
-DEFAULT_DATA = str(Path(__file__).parent.parent / "data" / "raw" / "dataset.csv")
+DEFAULT_DATA = str(Path(__file__).parent / "data" / "raw" / "dataset.csv")
 DEFAULT_MC = 5
 DEFAULT_RATES = [0.10, 0.20, 0.40]
 DEFAULT_MECHANISMS = ["MCAR", "MAR", "MNAR"]
@@ -254,7 +254,17 @@ def main() -> None:
 
     vr_df = pd.DataFrame(all_vr_records)
     if not vr_df.empty:
-        fig_variance_ratio_curves(vr_df.rename(columns={"R_V": "mean_R_V"}), supp_dir)
+        # Aggregate per-variable variance ratios into scenario-level means
+        # Use R_V_global as the main metric (backward compatible with v2/v3)
+        vr_agg = vr_df.groupby(["mechanism", "rate", "method", "mc_iter"]).agg({
+            "R_V_global": "mean"
+        }).reset_index()
+        vr_agg = vr_agg.rename(columns={"R_V_global": "mean_R_V"})
+        # Average across MC iterations
+        vr_final = vr_agg.groupby(["mechanism", "rate", "method"]).agg({
+            "mean_R_V": "mean"
+        }).reset_index()
+        fig_variance_ratio_curves(vr_final, supp_dir)
 
     if not results_df.empty:
         fig_boxplot_rmse(results_df, supp_dir)
